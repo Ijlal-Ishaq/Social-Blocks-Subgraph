@@ -106,6 +106,7 @@ type Post @entity {
   buyStatus: Int! # uint8
   sellValue: BigInt! # uint256
   transferHistory: [String!]!
+  createdAt: BigInt!
 }
 
 type Change @entity {

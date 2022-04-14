@@ -90,6 +90,7 @@ export function handlePostCreated(event: PostCreatedEvent): void {
   post.uri = event.params.uri;
   post.buyStatus = event.params.buyStatus;
   post.sellValue = event.params.sellValue;
+  post.createdAt = event.block.timestamp;
   let history = post.transferHistory;
   history.push(event.params.sender.toHexString());
   post.transferHistory = history;
@@ -97,7 +98,7 @@ export function handlePostCreated(event: PostCreatedEvent): void {
 }
 
 export function handlePostDetailsChanged(event: PostDetailsChangedEvent): void {
-  let post = Post.load(event.params.postId.toHexString());
+  let post = Post.load(event.params.postId.toString());
   let change = new Change(event.transaction.hash.toHexString());
   change.block = event.block.number;
   if (post) {

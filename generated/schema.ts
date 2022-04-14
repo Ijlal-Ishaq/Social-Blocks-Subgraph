@@ -949,6 +949,7 @@ export class Post extends Entity {
     this.set("uri", Value.fromString(""));
     this.set("sellValue", Value.fromBigInt(BigInt.zero()));
     this.set("transferHistory", Value.fromStringArray(new Array(0)));
+    this.set("createdAt", Value.fromBigInt(BigInt.zero()));
   }
 
   save(): void {
@@ -1029,6 +1030,15 @@ export class Post extends Entity {
 
   set transferHistory(value: Array<string>) {
     this.set("transferHistory", Value.fromStringArray(value));
+  }
+
+  get createdAt(): BigInt {
+    let value = this.get("createdAt");
+    return value!.toBigInt();
+  }
+
+  set createdAt(value: BigInt) {
+    this.set("createdAt", Value.fromBigInt(value));
   }
 }
 
