@@ -1,0 +1,16 @@
+{
+  "name": "Social-Blocks",
+  "license": "UNLICENSED",
+  "scripts": {
+    "codegen": "graph codegen",
+    "build": "graph build",
+    "deploy": "graph deploy --node https://api.studio.thegraph.com/deploy/ Social-Blocks",
+    "create-local": "graph create --node http://localhost:8020/ Social-Blocks",
+    "remove-local": "graph remove --node http://localhost:8020/ Social-Blocks",
+    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 Social-Blocks"
+  },
+  "dependencies": {
+    "@graphprotocol/graph-cli": "0.25.1",
+    "@graphprotocol/graph-ts": "0.24.1"
+  }
+}

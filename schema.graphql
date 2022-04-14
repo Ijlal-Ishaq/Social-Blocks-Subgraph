@@ -1,0 +1,123 @@
+type AccountCreated @entity {
+  id: ID!
+  user: Bytes! # address
+  userName: String! # string
+  displayName: String! # string
+  bio: String! # string
+  image: String! # string
+}
+
+type Approval @entity {
+  id: ID!
+  owner: Bytes! # address
+  approved: Bytes! # address
+  tokenId: BigInt! # uint256
+}
+
+type ApprovalForAll @entity {
+  id: ID!
+  owner: Bytes! # address
+  operator: Bytes! # address
+  approved: Boolean! # bool
+}
+
+type BidPlaced @entity {
+  id: ID!
+  bidder: Bytes! # address
+  postId: BigInt! # uint256
+  bidAmount: BigInt! # uint256
+}
+
+type BiddableTokenPurchased @entity {
+  id: ID!
+  oldOwner: Bytes! # address
+  newOwner: Bytes! # address
+  tokenId: BigInt! # uint256
+}
+
+type InfoChanged @entity {
+  id: ID!
+  displayName: String! # string
+  bio: String! # string
+  image: String! # string
+}
+
+type OwnershipTransferred @entity {
+  id: ID!
+  previousOwner: Bytes! # address
+  newOwner: Bytes! # address
+}
+
+type PostCreated @entity {
+  id: ID!
+  sender: Bytes! # address
+  uri: String! # string
+  buyStatus: Int! # uint8
+  sellValue: BigInt! # uint256
+}
+
+type PostDetailsChanged @entity {
+  id: ID!
+  postId: BigInt! # uint256
+  status: Int! # uint8
+  price: BigInt! # uint256
+  bidDuration: BigInt! # uint256
+}
+
+type PostRewardClaimed @entity {
+  id: ID!
+  user: Bytes! # address
+  postId: BigInt! # uint256
+  reward: BigInt! # uint256
+}
+
+type PostSold @entity {
+  id: ID!
+  from: Bytes! # address
+  to: Bytes! # address
+  amount: BigInt! # uint256
+}
+
+type Transfer @entity {
+  id: ID!
+  from: Bytes! # address
+  to: Bytes! # address
+  tokenId: BigInt! # uint256
+}
+
+type User @entity {
+  id: ID!
+  address: Bytes! # address
+  userName: String! # string
+  displayName: String! # string
+  bio: String! # string
+  image: String! # string
+  rewardClaimed: BigInt! # uint256
+  postsCreated: [Post!]! @derivedFrom(field: "creator")
+  postsOwn: [Post!]! @derivedFrom(field: "owner")
+  createdAt: BigInt!
+}
+
+type Post @entity {
+  id: ID!
+  creator: User! # address
+  owner: User! # address
+  uri: String! # string
+  buyStatus: Int! # uint8
+  sellValue: BigInt! # uint256
+  transferHistory: [String!]!
+}
+
+type Change @entity {
+  id: ID!
+  block: BigInt!
+  postId: String!
+  post: Post!
+}
+
+type UserChange @entity {
+  id: ID!
+  block: BigInt!
+  userAddress: Bytes!
+  user: User!
+}
