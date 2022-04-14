@@ -119,7 +119,7 @@ export function handlePostRewardClaimed(event: PostRewardClaimedEvent): void {
 }
 
 export function handleTransfer(event: TransferEvent): void {
-  let post = Post.load(event.params.tokenId.toHexString());
+  let post = Post.load(event.params.tokenId.toString());
   let change = new Change(event.transaction.hash.toHexString());
   change.block = event.block.number;
   if (post) {
